@@ -19,10 +19,6 @@ class ContainerBuilder
      */
     public function get($className, array $params = []): object
     {
-//        if(!file_exists($className)){
-//            throw new \RuntimeException("$className does not exist");
-//        }
-
         $reflection = new \ReflectionClass($className);
 
         if($constructorParams = $reflection->getConstructor()){

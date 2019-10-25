@@ -11,9 +11,7 @@ if ($action === 'Create'){
     $params['price'] = (float) readline('input price: ');
     $params['quantity'] = (int) readline('input quantity: ');
 }
-elseif ($action === 'Move'){
- echo 'das';
-}
+
 $container = new \Core\ContainerBuilder();
 $controller = $container->get('App\\'.$action);
 $controller->index($params);

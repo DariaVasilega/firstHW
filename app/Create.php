@@ -5,8 +5,11 @@ namespace App;
 
 use Src\Interfaces\Controller;
 use Src\Validator;
+use Symfony\Component\Routing\Annotation\Route;
 
-class Create implements Controller
+require_once ('../view/index.html');
+
+class create implements Controller
 {
     /**
      * @var Validator
@@ -23,6 +26,7 @@ class Create implements Controller
     }
 
     /**
+     * @Route("/create", name="data_list")
      * @param array $data
      */
     public function index(array $data = []):void
@@ -30,14 +34,11 @@ class Create implements Controller
         if($this->validator->isValid($data)){
             $currentData = json_decode(file_get_contents('../data.json'),true);
             $currentData[]=$data;
-            var_dump($data);
             if(!file_put_contents('../data.json',json_encode($currentData))){
                 throw new \RuntimeException('something was wrong, operation wasn`t complete');
             }else{
                 print_r($currentData);
             }
         }
-
     }
-
 }
